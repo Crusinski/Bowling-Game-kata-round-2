@@ -23,10 +23,12 @@ test( 'Score all ones', () => {
 });
 
 test( 'Score one spare then all zeros', () => {
+    bowlingGame.roll(0)
+    bowlingGame.roll(0)
     bowlingGame.roll(3)
     bowlingGame.roll(7)
     bowlingGame.roll(8)
-    for (i=0; i<17; i++)
+    for (i=0; i<15; i++)
         bowlingGame.roll(0)
 
     const score = bowlingGame.getScore()
@@ -41,5 +43,5 @@ test( 'Score one strike then all zeros', () => {
 
     const score = bowlingGame.getScore()
 
-    expect(score).toBe(26);
+    expect(score).toBe(10);
 });
