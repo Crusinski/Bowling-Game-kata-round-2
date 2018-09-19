@@ -10,29 +10,29 @@ function initialize() {
     totalRolls = []
 }
 
-function getScore (pins){
+function getScore(pins){
     let totalScore = 0
     let rollNumber = 0
 
-    
-    for (let turn = 0; turn < 10; turn++){
-        
-        const turnScoredSpare = calculateFrameScore(rollNumber) === 10
-        if (turnScoredSpare){
-            totalScore += totalRolls[rollNumber] + totalRolls[rollNumber+1] + totalRolls[rollNumber+2]
+    for (let turn = 0; turn < 10; turn++){ 
+
+        if (totalRolls[turn] + totalRolls[(turn*2)+1] === 10){
+            totalScore += totalRolls[turn] + totalRolls[(turn*2)+1] + totalRolls[(turn+1)*2] 
+            turn ++
         }
         else{
-            totalScore = calculateFrameScore(rollNumber) 
-        }
-        rollNumber += 2
-    }    
-        
+            totalScore += totalRolls[turn] + totalRolls[(turn*2)+1]
+        }  
+    }
+    
     return totalScore
 }
 
-function calculateFrameScore (rollNumber){
-    return totalRolls[rollNumber] + totalRolls[rollNumber+1]
-}
+
+
+// function calculateFrameScore (turn){
+//     return totalRolls[turn] + totalRolls[rollNumber+1]
+// }
 
 function roll(pins){
     totalRolls.push(pins)
