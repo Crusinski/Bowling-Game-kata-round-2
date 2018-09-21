@@ -16,12 +16,14 @@ function getScore(pins){
 
     for (let turn = 0; turn < 10; turn++){ 
 
-        if (totalRolls[turn * 2] === 10){ //strike
-            totalScore += totalRolls[(turn * 2)] + totalRolls[(turn*2) + 1] + totalRolls[(turn * 2) + 2] + totalRolls[(turn * 2) + 3]//
+        const frameIsStrike = totalRolls[turn * 2] === 10
+        if (frameIsStrike){ //strike
+            totalScore += calculateStrikeScore (turn)
+        turn ++
         }
 
         else if (calculateFrameScore (turn) === 10){ //spare
-            totalScore += totalRolls[(turn * 2)] + totalRolls[(turn*2)+1] + totalRolls[(turn*2) + 2] 
+            totalScore += calculateSpareScore (turn)
         }
 
         else{ //normal bowl
@@ -32,7 +34,13 @@ function getScore(pins){
     return totalScore
 }
 
+function calculateStrikeScore (turn){
+    return totalRolls[(turn * 2)] + totalRolls[(turn*2) + 1] + totalRolls[(turn * 2) + 2] + totalRolls[(turn * 2) + 3]
+}
 
+function calculateSpareScore (turn){
+    return totalRolls[(turn * 2)] + totalRolls[(turn*2)+1] + totalRolls[(turn*2) + 2]
+}
 
 function calculateFrameScore (turn){
     return totalRolls[turn * 2] + totalRolls[(turn * 2) + 1]

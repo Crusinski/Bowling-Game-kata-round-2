@@ -38,10 +38,21 @@ test( 'Score one spare then all zeros', () => {
 
 test( 'Score one strike then all zeros', () => {
     bowlingGame.roll(10)
+    bowlingGame.roll(3)
+    bowlingGame.roll(4)
     for (i=0; i<18; i++)
         bowlingGame.roll(0)
 
     const score = bowlingGame.getScore()
 
-    expect(score).toBe(10);
+    expect(score).toBe(17);
 });
+
+// test( 'Score perfect game', () => {
+//      for (i=0; i<10; i++)
+//         bowlingGame.roll(10)
+
+//     const score = bowlingGame.getScore()
+
+//     expect(score).toBe(300);
+// });
