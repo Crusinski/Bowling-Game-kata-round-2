@@ -14,36 +14,44 @@ function getScore(pins){
     let totalScore = 0
     let rollNumber = 0
 
-    for (let turn = 0; turn < 10; turn++){ 
+    for (let frame = 0; frame < 10; frame++){ 
 
-        const frameIsStrike = totalRolls[turn * 2] === 10
-        if (frameIsStrike){ //strike
-            totalScore += calculateStrikeScore (turn)
-        turn ++
+        const frameIsStrike = totalRolls[frame] === 10
+        if (frameIsStrike){ 
+
+            if ((frame + 1) === 10)
+            totalScore += calculateStrikeScore (frame)
+           
+            else{
+                totalScore += calculateStrikeScore (frame)
+                frame ++
+            }
+
         }
 
-        else if (calculateFrameScore (turn) === 10){ //spare
-            totalScore += calculateSpareScore (turn)
+        else if (calculateFrameScore (frame) === 10){ //spare
+            totalScore += calculateSpareScore (frame)
         }
 
         else{ //normal bowl
-            totalScore += calculateFrameScore (turn)
+            totalScore += calculateFrameScore (frame)
         }  
     }
     
     return totalScore
 }
 
-function calculateStrikeScore (turn){
-    return totalRolls[(turn * 2)] + totalRolls[(turn*2) + 1] + totalRolls[(turn * 2) + 2] + totalRolls[(turn * 2) + 3]
+function calculateStrikeScore (frame){
+    return totalRolls[(frame * 2)] + totalRolls[(frame*2) + 1] + totalRolls[(frame * 2) + 2]  + totalRolls[(frame * 2) + 3] 
 }
 
-function calculateSpareScore (turn){
-    return totalRolls[(turn * 2)] + totalRolls[(turn*2)+1] + totalRolls[(turn*2) + 2]
+
+function calculateSpareScore (frame){
+    return totalRolls[(frame * 2)] + totalRolls[(frame*2)+1] + totalRolls[(frame*2) + 2]
 }
 
-function calculateFrameScore (turn){
-    return totalRolls[turn * 2] + totalRolls[(turn * 2) + 1]
+function calculateFrameScore (frame){
+    return totalRolls[frame * 2] + totalRolls[(frame * 2) + 1]
 }
 
 function roll(pins){
