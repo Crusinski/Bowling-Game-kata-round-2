@@ -16,42 +16,38 @@ function getScore(pins){
 
     for (let frame = 0; frame < 10; frame++){ 
 
-        const frameIsStrike = totalRolls[frame] === 10
+        const frameIsStrike = totalRolls[rollNumber] === 10
         if (frameIsStrike){ 
-
-            if ((frame + 1) === 10)
-            totalScore += calculateStrikeScore (frame)
-           
-            else{
-                totalScore += calculateStrikeScore (frame)
-                frame ++
-            }
-
+            totalScore += calculateStrikeScore (rollNumber)
+            rollNumber += 2
         }
 
-        else if (calculateFrameScore (frame) === 10){ //spare
-            totalScore += calculateSpareScore (frame)
+        const frameIsSpare = totalRolls[rollNumber] + totalRolls[rollNumber + 1] === 10
+        if (frameIsSpare){ 
+            totalScore += calculateSpareScore (rollNumber)
+            rollNumber += 2
         }
 
         else{ //normal bowl
-            totalScore += calculateFrameScore (frame)
+            totalScore += calculateFrameScore (rollNumber)
+            rollNumber += 2
         }  
     }
     
     return totalScore
 }
 
-function calculateStrikeScore (frame){
-    return totalRolls[(frame * 2)] + totalRolls[(frame*2) + 1] + totalRolls[(frame * 2) + 2]  + totalRolls[(frame * 2) + 3] 
+function calculateStrikeScore (rollNumber){
+    return totalRolls[rollNumber] + totalRolls[rollNumber + 1] + totalRolls[rollNumber  + 2]
 }
 
 
-function calculateSpareScore (frame){
-    return totalRolls[(frame * 2)] + totalRolls[(frame*2)+1] + totalRolls[(frame*2) + 2]
+function calculateSpareScore (rollNumber){
+    return totalRolls[rollNumber] + totalRolls[rollNumber + 1] + totalRolls[rollNumber +2]
 }
 
-function calculateFrameScore (frame){
-    return totalRolls[frame * 2] + totalRolls[(frame * 2) + 1]
+function calculateFrameScore (rollNumber){
+    return totalRolls[rollNumber] + totalRolls[rollNumber + 1]
 }
 
 function roll(pins){

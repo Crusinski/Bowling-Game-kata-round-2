@@ -36,43 +36,35 @@ test( 'Score one spare then all zeros', () => {
     expect(score).toBe(26);
 });
 
-test( 'Score one strike then all zeros', () => {
+test( 'Score one strike', () => {
     bowlingGame.roll(10)
     bowlingGame.roll(3)
     bowlingGame.roll(4)
-    for (i=0; i<18; i++)
+    for (i=0; i<17; i++)
         bowlingGame.roll(0)
 
     const score = bowlingGame.getScore()
 
-    expect(score).toBe(17);
+    expect(score).toBe(24);
 });
 
-test( 'Score perfect game', () => {
-     for (i=0; i<12; i++){
-         bowlingGame.roll(10)
-     }
-     bowlingGame.roll(0)
-     bowlingGame.roll(0)
-     bowlingGame.roll(0)
-     bowlingGame.roll(0)
-     bowlingGame.roll(0)
-     bowlingGame.roll(0)
-     bowlingGame.roll(0)
-     bowlingGame.roll(0)
+// test( 'Score perfect game', () => {
+//      for (i=0; i<12; i++){
+//          bowlingGame.roll(10)
+//      }
 
-    const score = bowlingGame.getScore()
+//     const score = bowlingGame.getScore()
 
-    expect(score).toBe(300);
-});
+//     expect(score).toBe(300);
+// });
 
-test( 'Score one strike then all zeros', () => {
-    bowlingGame.roll(10)
-    bowlingGame.roll(10)
-    for (i=0; i<19; i++)
-        bowlingGame.roll(0)
+// test( 'Score one strike then all zeros', () => {
+//     bowlingGame.roll(10)
+//     bowlingGame.roll(10)
+//     for (i=0; i<18; i++)
+//         bowlingGame.roll(0)
 
-    const score = bowlingGame.getScore()
+//     const score = bowlingGame.getScore()
 
-    expect(score).toBe(30);
-});
+//     expect(score).toBe(30);
+// });
