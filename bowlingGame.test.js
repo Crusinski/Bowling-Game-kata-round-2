@@ -48,23 +48,23 @@ test( 'Score one strike', () => {
     expect(score).toBe(24);
 });
 
-// test( 'Score perfect game', () => {
-//      for (i=0; i<12; i++){
-//          bowlingGame.roll(10)
-//      }
+test( 'Score perfect game', () => {
+     for (i=0; i<12; i++){
+         bowlingGame.roll(10)
+     }
 
-//     const score = bowlingGame.getScore()
+    const score = bowlingGame.getScore()
 
-//     expect(score).toBe(300);
-// });
+    expect(score).toBe(300);
+});
 
-// test( 'Score one strike then all zeros', () => {
-//     bowlingGame.roll(10)
-//     bowlingGame.roll(10)
-//     for (i=0; i<18; i++)
-//         bowlingGame.roll(0)
+test( 'Score one strike then all zeros', () => {
+    bowlingGame.roll(10)
+    bowlingGame.roll(10)
+    for (i=0; i<18; i++)
+        bowlingGame.roll(0)
 
-//     const score = bowlingGame.getScore()
+    const score = bowlingGame.getScore()
 
-//     expect(score).toBe(30);
-// });
+    expect(score).toBe(30);
+});

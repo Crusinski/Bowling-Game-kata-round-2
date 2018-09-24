@@ -17,13 +17,13 @@ function getScore(pins){
     for (let frame = 0; frame < 10; frame++){ 
 
         const frameIsStrike = totalRolls[rollNumber] === 10
+        const frameIsSpare = totalRolls[rollNumber] + totalRolls[rollNumber + 1] === 10
         if (frameIsStrike){ 
             totalScore += calculateStrikeScore (rollNumber)
-            rollNumber += 2
+            rollNumber++
         }
-
-        const frameIsSpare = totalRolls[rollNumber] + totalRolls[rollNumber + 1] === 10
-        if (frameIsSpare){ 
+        
+        else if (frameIsSpare){ 
             totalScore += calculateSpareScore (rollNumber)
             rollNumber += 2
         }
